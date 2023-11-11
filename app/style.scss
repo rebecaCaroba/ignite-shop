@@ -1,0 +1,11 @@
+@import '../styles/config/variables';
+
+.teste {
+    button {
+        background-color: $c-main;
+        border: 0;
+        margin: 20px;
+        width: 50px;
+        height: 50px;
+    }
+}

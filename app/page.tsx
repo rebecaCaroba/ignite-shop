@@ -1,5 +1,8 @@
+import './style.scss'
+
+
 export default function Home() {
   return (
-    <div>Hello world</div>
+    <div className="teste"><button>Enviar</button></div>
   )
 }
