@@ -1,12 +1,60 @@
 @import '../styles/config/variables';
 
-.teste {
-    button {
-        background-color: $c-main;
-        border: 0;
-        margin: 20px;
-        width: 50px;
-        height: 50px;
-    }
+.homeContainer {
+    display: flex;
+    gap: 3rem;
+    width: 100%;
+    max-width: calc(100vw - ((100vw - 1180px)/2));
+    margin-left: auto;
+    min-height: 656;
 }
 
+.product {
+    background: linear-gradient(188deg, #1ea483 0%, #7465d4 100%);
+    border-radius: 8px;
+    cursor: pointer;
+    padding: 0.25rem;
+    color: white;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+
+    img {
+        object-fit: cover;
+    }
+
+    footer {
+        position: absolute;
+        bottom: 0.25rem;
+        left: 0.25rem;
+        right: 0.25rem;
+        border-radius: 6px;
+        padding: 2rem;
+
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        background: rgba(0, 0, 0, 0.6);
+        transform: translateY(110%);
+        opacity: 0;
+        transition: all 0.2s ease-in-out;
+
+
+        strong {
+            font-size: $h3;
+        }
+    
+        span {
+            font-size: $h2;
+            font-weight: bold;
+            color: $c-green-300;
+        }
+
+    }
+    :hover ~ footer{
+        transform: translate(0%);
+        opacity: 1;  
+    }   
+}
