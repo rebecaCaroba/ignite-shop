@@ -1,7 +1,7 @@
 'use client'
 import { useKeenSlider } from 'keen-slider/react'
 import 'keen-slider/keen-slider.min.css'
-import '../../app/style.scss'
+import './style.scss'
 import camisetas from '../../assets/camiseta.png'
 import Image from 'next/image'
 
@@ -10,7 +10,7 @@ interface SliderProps {
     id: string
     name: string
     imageUrl: string
-    price: number | null
+    price: string | null
   }[]
 }
 
