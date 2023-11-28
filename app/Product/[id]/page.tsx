@@ -1,23 +1,42 @@
 import Image from 'next/image'
 import './style.scss'
-import camiseta from '../../../assets/camisaVtex.png'
+import { stripe } from '@/lib/stripe'
+import Stripe from 'stripe'
 interface ProductProps {
   params: {
     id: string
   }
+  
 }
 
-export default function Productoone({ params }: ProductProps) {
+export const revalidate = 7200
+
+export default async function Productoone({ params }: ProductProps) {
+    const productId = params.id
+
+    const product = await stripe.products.retrieve(productId, {
+      expand: ['default_price']
+    })
+
+    const price = product.default_price as Stripe.Price
+
+    const priceValue = price.unit_amount
+    ? new Intl.NumberFormat('pt-br', {
+      style: 'currency',
+      currency: 'BRL',
+    }).format(price.unit_amount / 100)
+    : null
+
     return (
       <main className="product-container">
         <div className="img-container">
-        <Image src={camiseta} alt='camisetas' width={520} height={480} />
+        <Image src={product.images[0]} alt='camisetas' width={520} height={480} />
         </div>
         <div className="product-details">
-          <h1>Camiseta x</h1>
-          <span>R$ 99,90</span>
+          <h1>{product.name}</h1>
+          <span>{priceValue}</span>
           <p>
-            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Odio provident porro ut fugit impedit recusandae asperiores corrupti, libero quibusdam sed cum harum accusantium cumque unde aperiam dolore eaque soluta. Voluptatum?
+            {product.description}
           </p>
           <button>
             Comprar agora
