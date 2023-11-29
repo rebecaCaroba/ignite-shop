@@ -25,7 +25,7 @@ export function Slider({ products }: SliderProps) {
   return (
     <div className='homeContainer keen-slider' ref={sliderRef}>
       {products.map(product => (
-        <Link key={product.id} href={`/Product/${product.id}`} className='product keen-slider__slide'>
+        <Link key={product.id} href={`/Product/${product.id}`} className='product keen-slider__slide' prefetch={false} >
           <Image src={product.imageUrl} alt='camisetas' width={520} height={480} />
           <footer>
             <strong>{product.name}</strong>
